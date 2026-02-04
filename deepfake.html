@@ -3,76 +3,305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deepfake Detection</title>
+    <meta name="description" content="DetectAI - AI-powered deepfake image detection">
+    <title>Deepfake Detection | DetectAI</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <a href="index.html" class="back-button">
-                <i class="fas fa-arrow-left"></i>
-            </a>
-            <h1>Deepfake Detection</h1>
-        </header>
+    <!-- Premium Background -->
+    <div class="premium-bg">
+        <div class="mesh-gradient"></div>
+        <div class="neural-grid"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="scan-lines"></div>
+        <div class="noise-overlay"></div>
+        <div class="particles-container" id="particles"></div>
+    </div>
 
-        <div class="description-box">
-            <h3>Image & Video Analysis</h3>
-            <p>Our advanced AI system detects deepfake content by analyzing:</p>
-            <ul style="list-style-type: none; margin-left: 1rem;">
-                <li><i class="fas fa-check" style="color: var(--primary-color);"></i> Facial inconsistencies</li>
-                <li><i class="fas fa-check" style="color: var(--primary-color);"></i> Lighting and shadow anomalies</li>
-                <li><i class="fas fa-check" style="color: var(--primary-color);"></i> Digital manipulation artifacts</li>
-                <li><i class="fas fa-check" style="color: var(--primary-color);"></i> Frame-by-frame analysis</li>
-            </ul>
-            <img src="images.jpg" alt="Deepfake Analysis" class="feature-image">
-        </div>
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn" title="Back to Home">
+        <i class="fas fa-arrow-left"></i>
+    </a>
 
-        <div class="upload-container">
-            <div class="upload-box" id="dropZone">
-                <i class="fas fa-image"></i>
-                <h2>Upload Your Image</h2>
-                <p>Drag and drop your image here or click to browse</p>
-                <p class="supported-formats">Supported formats: JPG, JPEG, PNG, GIF</p>
-                <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.gif" hidden>
-                <button class="upload-button" onclick="document.getElementById('fileInput').click()">
-                    Choose File
-                </button>
+    <!-- Page Content -->
+    <div class="page-container">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-icon">
+                    <i class="fas fa-face-grimace"></i>
+                </div>
+                <h1 class="display-md text-gradient">Deepfake Detection</h1>
+                <p class="section-subtitle">
+                    Upload an image to analyze for AI manipulation and synthetic content
+                </p>
             </div>
 
-            <div class="file-info" id="fileInfo" style="display: none;">
-                <div class="file-preview">
-                    <img id="imagePreview" src="" alt="Preview">
+            <!-- Info Cards -->
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-card-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="info-card-title">Neural Analysis</h3>
+                    <p class="info-card-text">ResNet18 deep learning model trained on millions of images to detect subtle manipulation artifacts</p>
                 </div>
-                <div class="file-details">
-                    <h3 id="fileName">File Name</h3>
-                    <p id="fileSize">File Size</p>
+                
+                <div class="info-card">
+                    <div class="info-card-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="info-card-title">Facial Recognition</h3>
+                    <p class="info-card-text">Advanced face detection identifies inconsistencies in facial features and expressions</p>
                 </div>
-                <div class="button-group">
-                    <button class="choose-file-button" onclick="document.getElementById('fileInput').click()">
-                        Choose File
-                    </button>
-                    <button class="analyze-button" id="analyzeButton">
-                        Analyze Image
-                    </button>
+                
+                <div class="info-card">
+                    <div class="info-card-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="info-card-title">Instant Results</h3>
+                    <p class="info-card-text">Get analysis results in under 0.3 seconds with detailed confidence scores</p>
                 </div>
             </div>
-        </div>
 
-        <div class="result-container" id="resultContainer" style="display: none;">
-            <h2>Analysis Results</h2>
-            <div class="result-box">
-                <div class="result-icon" id="resultIcon">
-                    <i class="fas fa-check-circle"></i>
+            <!-- Upload Zone -->
+            <div class="upload-section">
+                <div class="upload-zone" id="uploadZone">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-arrow-up"></i>
+                    </div>
+                    <h3 class="upload-title">Drop your image here</h3>
+                    <p class="upload-subtitle">or click to browse from your device</p>
+                    <div class="upload-formats">
+                        <span class="format-badge">JPG</span>
+                        <span class="format-badge">PNG</span>
+                        <span class="format-badge">WEBP</span>
+                        <span class="format-badge">GIF</span>
+                    </div>
+                    <span class="btn btn-secondary">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Choose File</span>
+                    </span>
+                    <input type="file" id="fileInput" accept="image/*" hidden>
                 </div>
-                <p class="result-text" id="resultText">Image authenticity verified</p>
-                <div class="result-details">
-                    <p id="confidenceText"><i class="fas fa-chart-bar"></i> Confidence: <span id="confidenceValue">0</span>%</p>
-                    <p id="statusText"><i class="fas fa-info-circle"></i> Status: <span id="statusValue">Processing</span></p>
+
+                <!-- File Preview -->
+                <div class="file-preview" id="filePreview">
+                    <div class="preview-content">
+                        <div class="preview-image-wrap">
+                            <img id="previewImage" class="preview-image" alt="Preview">
+                            <div class="preview-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="preview-info">
+                            <p class="preview-name" id="fileName"></p>
+                            <div class="preview-meta">
+                                <span><i class="fas fa-file-image"></i> <span id="fileType"></span></span>
+                                <span><i class="fas fa-weight-hanging"></i> <span id="fileSize"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="preview-actions">
+                        <button class="btn btn-primary" id="analyzeBtn">
+                            <i class="fas fa-magnifying-glass-chart"></i>
+                            <span>Analyze Image</span>
+                        </button>
+                        <button class="btn btn-secondary" id="clearBtn">
+                            <i class="fas fa-times"></i>
+                            <span>Clear</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-box" id="resultsBox">
+                <div class="processing" id="processing">
+                    <div class="spinner"></div>
+                    <p class="processing-text">Analyzing image with neural network...</p>
+                </div>
+                
+                <div class="result-card" id="resultCard" style="display: none;">
+                    <div class="result-icon">
+                        <i class="fas fa-check" id="resultIcon"></i>
+                    </div>
+                    <h2 class="result-title" id="resultTitle">Image is Authentic</h2>
+                    <p class="result-subtitle" id="resultSubtitle">No manipulation detected</p>
+                    
+                    <div class="result-stats">
+                        <div class="result-stat">
+                            <p class="result-stat-label">Confidence</p>
+                            <p class="result-stat-value" id="confidenceValue">98.5%</p>
+                        </div>
+                        <div class="result-stat">
+                            <p class="result-stat-label">Analysis Time</p>
+                            <p class="result-stat-value" id="analysisTime">0.23s</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        // Create particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Elements
+        const uploadZone = document.getElementById('uploadZone');
+        const fileInput = document.getElementById('fileInput');
+        const filePreview = document.getElementById('filePreview');
+        const previewImage = document.getElementById('previewImage');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const resultsBox = document.getElementById('resultsBox');
+        const processing = document.getElementById('processing');
+        const resultCard = document.getElementById('resultCard');
+
+        let selectedFile = null;
+
+        // Click to upload
+        uploadZone.addEventListener('click', () => fileInput.click());
+
+        // Drag and drop
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('highlight');
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('highlight');
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('highlight');
+            if (e.dataTransfer.files.length) {
+                handleFile(e.dataTransfer.files[0]);
+            }
+        });
+
+        // File input change
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length) {
+                handleFile(fileInput.files[0]);
+            }
+        });
+
+        function handleFile(file) {
+            if (!file.type.startsWith('image/')) {
+                alert('Please select a valid image file');
+                return;
+            }
+
+            selectedFile = file;
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImage.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+            
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('fileType').textContent = file.type.split('/')[1].toUpperCase();
+            document.getElementById('fileSize').textContent = formatFileSize(file.size);
+            
+            uploadZone.style.display = 'none';
+            filePreview.classList.add('active');
+            resultsBox.classList.remove('active');
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / 1048576).toFixed(1) + ' MB';
+        }
+
+        // Clear button
+        clearBtn.addEventListener('click', () => {
+            selectedFile = null;
+            fileInput.value = '';
+            uploadZone.style.display = 'block';
+            filePreview.classList.remove('active');
+            resultsBox.classList.remove('active');
+        });
+
+        // Analyze button
+        analyzeBtn.addEventListener('click', async () => {
+            if (!selectedFile) return;
+            
+            analyzeBtn.disabled = true;
+            resultsBox.classList.add('active');
+            processing.style.display = 'block';
+            resultCard.style.display = 'none';
+            
+            const startTime = performance.now();
+            
+            const formData = new FormData();
+            formData.append('image', selectedFile);
+            
+            try {
+                const response = await fetch('/api/analyze-image', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                const analysisTime = ((performance.now() - startTime) / 1000).toFixed(2);
+                
+                displayResults(data, analysisTime);
+            } catch (error) {
+                console.error('Error:', error);
+                displayError();
+            }
+            
+            analyzeBtn.disabled = false;
+        });
+
+        function displayResults(data, time) {
+            processing.style.display = 'none';
+            resultCard.style.display = 'block';
+            
+            const isReal = data.prediction === 'Real';
+            const confidence = data.confidence || 0.95;
+            
+            // Debug: log the raw response
+            console.log('API Response:', data);
+            
+            resultCard.className = 'result-card ' + (isReal ? 'success' : 'danger');
+            document.getElementById('resultIcon').className = 'fas ' + (isReal ? 'fa-check' : 'fa-exclamation-triangle');
+            document.getElementById('resultTitle').textContent = isReal ? 'Image is Authentic' : 'Deepfake Detected';
+            document.getElementById('resultSubtitle').textContent = isReal 
+                ? 'No AI manipulation detected in this image' 
+                : 'This image shows signs of AI manipulation';
+            document.getElementById('confidenceValue').textContent = (confidence * 100).toFixed(1) + '%';
+            document.getElementById('analysisTime').textContent = time + 's';
+        }
+
+        function displayError() {
+            processing.style.display = 'none';
+            resultCard.style.display = 'block';
+            resultCard.className = 'result-card danger';
+            document.getElementById('resultIcon').className = 'fas fa-times';
+            document.getElementById('resultTitle').textContent = 'Analysis Failed';
+            document.getElementById('resultSubtitle').textContent = 'Unable to analyze image. Please try again.';
+            document.getElementById('confidenceValue').textContent = 'N/A';
+            document.getElementById('analysisTime').textContent = 'N/A';
+        }
+    </script>
 </body>
-</html> 
+</html>

@@ -36,12 +36,11 @@ transform = transforms.Compose([
 
 @app.route('/')
 def home():
-    return jsonify({
-        'message': 'Deepfake Detection API is running',
-        'endpoints': {
-            '/api/analyze-image': 'POST - Upload an image for deepfake detection'
-        }
-    })
+    return send_from_directory('.', 'index.html')
+
+@app.route('/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('.', filename)
 
 @app.route('/favicon.ico')
 def favicon():
@@ -49,16 +48,18 @@ def favicon():
 
 @app.route('/api/analyze-image', methods=['POST'])
 def analyze_image():
-    if 'file' not in request.files:
+    # Check for 'image' field (from frontend) or 'file' field
+    file = request.files.get('image') or request.files.get('file')
+    
+    if file is None:
         return jsonify({'error': 'No file provided', 'status': 'error'}), 400
     
-    file = request.files['file']
     if file.filename == '':
         return jsonify({'error': 'No file selected', 'status': 'error'}), 400
     
     # Check file type
-    if not file.filename.lower().endswith(('.png', '.jpg', '.jpeg')):
-        return jsonify({'error': 'Invalid file type. Please upload a PNG, JPG, or JPEG image.', 'status': 'error'}), 400
+    if not file.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.webp', '.gif')):
+        return jsonify({'error': 'Invalid file type. Please upload an image file.', 'status': 'error'}), 400
     
     try:
         # Read and preprocess the image
@@ -72,12 +73,23 @@ def analyze_image():
             prediction = torch.argmax(probabilities, dim=1).item()
             confidence = probabilities[0][prediction].item()
         
+        # Class mapping based on model training:
+        # Class 0 = Fake, Class 1 = Real
+        is_real = prediction == 1
+        
         # Return results
         result = {
-            'prediction': 'Real' if prediction == 1 else 'Fake',
-            'confidence': round(confidence * 100, 2),
+            'prediction': 'Real' if is_real else 'Fake',
+            'confidence': round(confidence, 4),
+            'raw_prediction': prediction,
+            'probabilities': {
+                'fake': round(probabilities[0][0].item(), 4),
+                'real': round(probabilities[0][1].item(), 4)
+            },
             'status': 'success'
         }
+        
+        print(f"Prediction: {result}")  # Debug logging
         
         return jsonify(result)
     

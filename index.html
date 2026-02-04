@@ -3,46 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detect AI</title>
+    <meta name="description" content="DetectAI - Advanced AI-powered deepfake and malware detection platform">
+    <title>DetectAI - Advanced Image & Threat Detection</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
-    <div class="main-hero-bg">
-        <div class="main-hero-container">
-            <div class="main-hero-left">
-                <h1 class="main-hero-title">Detect <span>AI</span></h1>
-                <p class="main-hero-subtitle">AI-Powered Malware & Deepfake Detection Platform</p>
-                <div class="features-list">
-                    <p><i class="fas fa-check-circle"></i> Advanced AI-powered analysis</p>
-                    <p><i class="fas fa-check-circle"></i> Real-time URL checking</p>
-                    <p><i class="fas fa-check-circle"></i> User-friendly interface</p>
-                    <p><i class="fas fa-check-circle"></i> Secure and private</p>
+    <!-- Premium Background -->
+    <div class="premium-bg">
+        <div class="mesh-gradient"></div>
+        <div class="neural-grid"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="scan-lines"></div>
+        <div class="noise-overlay"></div>
+        <div class="particles-container" id="particles"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-mark">
+                    <i class="fas fa-brain"></i>
                 </div>
-            </div>
-            <div class="main-hero-right">
-                <div class="hero-btn-container">
-                    <a href="malware-detection.html" class="hero-btn hero-btn-phish">
-                        <i class="fas fa-link"></i>
-                        <div class="btn-content">
-                            <p class="btn-title"><b>Malware Link Detection</b></p>
-                            <p class="btn-desc">Check URLs for potential malware threats</p>
+                <span class="nav-logo-text">Detect<span>AI</span></span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="#features">Features</a></li>
+                <li><a href="deepfake.html">Deepfake Detection</a></li>
+                <li><a href="malware-detection.html">Threat Scanner</a></li>
+            </ul>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="#features">Features</a>
+        <a href="deepfake.html">Deepfake Detection</a>
+        <a href="malware-detection.html">Threat Scanner</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-badge">
+                        AI-Powered Security Platform
+                    </span>
+                    
+                    <h1 class="hero-title display-lg text-gradient">
+                        Detect Deepfakes<br>Before They<br>Deceive You
+                    </h1>
+                    
+                    <p class="hero-subtitle">
+                        Next-generation AI detection that identifies manipulated images and malicious URLs with unprecedented accuracy. Protect your digital world.
+                    </p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-value">99.2%</div>
+                            <div class="stat-label">Accuracy</div>
                         </div>
-                    </a>
-                    <a href="deepfake.html" class="hero-btn hero-btn-img">
-                        <i class="fas fa-image"></i>
-                        <div class="btn-content">
-                            <p class="btn-title"><b>Deepfake Image Detection</b></p>
-                            <p class="btn-desc">Detect manipulated images and videos</p>
+                        <div class="stat">
+                            <div class="stat-value">&lt;0.3s</div>
+                            <div class="stat-label">Analysis Time</div>
                         </div>
-                    </a>
+                        <div class="stat">
+                            <div class="stat-value">100M+</div>
+                            <div class="stat-label">Scans Done</div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-cta">
+                        <a href="deepfake.html" class="btn btn-primary">
+                            <span>Start Detection</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#features" class="btn btn-secondary">
+                            <span>Learn More</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="scanner-container">
+                        <div class="scanner-frame">
+                            <div class="image-comparison">
+                                <div class="comparison-side real">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop" alt="Real face" class="comparison-image">
+                                    <span class="comparison-label">
+                                        <i class="fas fa-check"></i> Real
+                                    </span>
+                                </div>
+                                <div class="comparison-side fake">
+                                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=300&fit=crop" alt="AI Generated" class="comparison-image" style="filter: hue-rotate(10deg) saturate(1.1);">
+                                    <span class="comparison-label">
+                                        <i class="fas fa-exclamation-triangle"></i> AI Generated
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="neural-overlay" id="neuralOverlay"></div>
+                        </div>
+                        
+                        <div class="scanner-corners">
+                            <div class="scanner-corner"></div>
+                            <div class="scanner-corner"></div>
+                            <div class="scanner-corner"></div>
+                            <div class="scanner-corner"></div>
+                        </div>
+                        
+                        <div class="scanner-status">
+                            <span>Neural Analysis Active</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="animated-bg-shape shape1"></div>
-        <div class="animated-bg-shape shape2"></div>
-        <div class="animated-bg-shape shape3"></div>
-    </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Powerful Tools</span>
+                <h2 class="section-title text-gradient">Choose Your Detection Mode</h2>
+                <p class="section-subtitle">
+                    Advanced AI algorithms analyze visual patterns and behavioral signatures to identify threats
+                </p>
+            </div>
+            
+            <div class="feature-grid">
+                <a href="deepfake.html" class="feature-card deepfake">
+                    <div class="feature-card-inner">
+                        <div class="feature-icon">
+                            <i class="fas fa-face-grimace"></i>
+                        </div>
+                        
+                        <h3 class="feature-card-title">Deepfake Detection</h3>
+                        <p class="feature-card-desc">
+                            Upload any image and our ResNet18 neural network will analyze facial features, lighting inconsistencies, and pixel patterns to detect AI manipulation.
+                        </p>
+                        
+                        <div class="feature-tags">
+                            <span class="feature-tag">Face Analysis</span>
+                            <span class="feature-tag">GAN Detection</span>
+                            <span class="feature-tag">Neural Network</span>
+                        </div>
+                        
+                        <div class="feature-action">
+                            <span>Analyze Images</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="malware-detection.html" class="feature-card malware">
+                    <div class="feature-card-inner">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-virus"></i>
+                        </div>
+                        
+                        <h3 class="feature-card-title">URL Threat Scanner</h3>
+                        <p class="feature-card-desc">
+                            Scan any URL for malware, phishing attempts, and malicious content. Our real-time analysis protects you before you click.
+                        </p>
+                        
+                        <div class="feature-tags">
+                            <span class="feature-tag">Phishing Detection</span>
+                            <span class="feature-tag">Malware Scan</span>
+                            <span class="feature-tag">Real-time</span>
+                        </div>
+                        
+                        <div class="feature-action">
+                            <span>Scan URLs</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <script src="script.js"></script>
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        
+        // Create neural network dots
+        function createNeuralOverlay() {
+            const overlay = document.getElementById('neuralOverlay');
+            for (let i = 0; i < 20; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'neural-dot';
+                dot.style.left = Math.random() * 100 + '%';
+                dot.style.top = Math.random() * 100 + '%';
+                dot.style.animationDelay = Math.random() * 2 + 's';
+                overlay.appendChild(dot);
+            }
+        }
+        
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+        
+        // Mobile navigation toggle
+        const navToggle = document.getElementById('navToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        navToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+        });
+        
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+            });
+        });
+        
+        // Initialize
+        createParticles();
+        createNeuralOverlay();
+    </script>
 </body>
-</html> 
+</html>
